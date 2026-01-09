@@ -1,44 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>FOXCARS – Inspection automobile indépendante</title>
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Inspection automobile indépendante – Pré-achat, LOA/LLD, véhicules anciens.">
-
-  <link rel="stylesheet" href="actifs/style.css">
+  <title>FOXCARS — Inspection automobile indépendante</title>
+  <meta name="description" content="Inspection automobile indépendante : pré-achat, audit LOA/LLD, véhicules anciens. Photos + recommandations. Gard et départements limitrophes.">
+  <link rel="stylesheet" href="Actifs/style.css">
+  <script defer src="Actifs/main.js"></script>
 </head>
-
 <body>
 
-<header class="header">
-  <img src="actifs/logo.png" alt="FOXCARS" class="logo">
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="index.html">
+      <img src="Actifs/logo.png" alt="FOXCARS">
+      <div class="brand-title">
+        <strong>FOXCARS</strong>
+        <span>Inspection automobile indépendante</span>
+      </div>
+    </a>
 
-  <nav class="nav">
-    <a href="services.html">Services</a>
-    <a href="tarifs.html">Tarifs</a>
-    <a href="a-propos.html">À propos</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+    <nav class="nav" aria-label="Navigation">
+      <a href="services.html">Services</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="A-propos.html">À propos</a>
+      <a href="contact.html">Contact</a>
+    </nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Inspection automobile indépendante</h1>
-    <p>Pré-achat, restitution LOA/LLD, véhicules anciens.<br>
-    Une décision claire. Des faits. Aucun compromis.</p>
-
-    <div class="hero-actions">
-      <a href="tel:0666545588" class="btn-primary">📞 06 66 54 55 88</a>
-      <a href="services.html" class="btn-secondary">Voir les services</a>
+    <div class="cta">
+      <a class="pill" href="tel:0666545588">📞 <strong>06 66 54 55 88</strong></a>
+      <a class="btn btn-primary" href="contact.html">Demander un devis</a>
     </div>
   </div>
-</section>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-split">
+      <div class="hero-card">
+        <p class="kicker">Décider vite. Décider juste.</p>
+        <h1>Inspection automobile indépendante, orientée décision.</h1>
+        <p class="lead">
+          Pré-achat, audit avant restitution LOA/LLD, véhicules anciens / collection.
+          Vous repartez avec des <b>photos</b>, des <b>constats clairs</b> et des <b>recommandations actionnables</b>.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="services.html">Voir les services</a>
+          <a class="btn" href="tarifs.html">Voir les tarifs</a>
+          <a class="btn" href="tel:0666545588">Appeler</a>
+        </div>
+
+        <div class="badges">
+          <div class="badge">📍 <b>Zone</b> Gard + départements limitrophes</div>
+          <div class="badge">🕘 <b>Horaires</b> lundi → samedi, 9h–17h</div>
+          <div class="badge">🧾 <b>Pro</b> sur devis (process & livrables)</div>
+        </div>
+
+        <div class="hr"></div>
+        <div class="note">
+          Objectif FOXCARS : réduire le risque, clarifier l’état réel, et vous aider à <b>acheter</b>, <b>renégocier</b> ou <b>renoncer</b>.
+        </div>
+      </div>
+
+      <div class="hero-media" aria-hidden="true">
+        <img src="Actifs/hero.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>L’essentiel, sans surcharge</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Pré-achat</h3>
+          <p>Limiter le risque avant achat : état, défauts, cohérence, points de vigilance.</p>
+          <a class="link" href="services.html">Détails →</a>
+        </article>
+
+        <article class="card">
+          <h3>Audit LOA/LLD</h3>
+          <p>Relevé de dommages + plan d’action avant restitution.</p>
+          <a class="link" href="services.html#loa">Détails →</a>
+        </article>
+
+        <article class="card">
+          <h3>Anciens / collection</h3>
+          <p>Approche renforcée : cohérence, état, vigilance sur l’historique.</p>
+          <a class="link" href="services.html#collection">Détails →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer class="footer">
-  <p>© FOXCARS – Inspection automobile indépendante</p>
+  <div class="container footer-row">
+    <div>© FOXCARS — Inspection automobile indépendante</div>
+    <div class="footer-links">
+      <a href="Mention-légales.html">Mentions légales</a>
+      <a href="confidentialité.html">Confidentialité</a>
+      <a href="Cookies.html">Cookies</a>
+      <a href="Ccv.html">CGVU</a>
+    </div>
+  </div>
 </footer>
 
-<script src="actifs/main.js"></script>
 </body>
 </html>
