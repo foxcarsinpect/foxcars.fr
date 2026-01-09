@@ -1,1 +1,22 @@
+(function(){
+  // Cookie consent (simple, sans tracking)
+  const KEY = "foxcars_cookie_ok";
+  const bar = document.querySelector(".cookiebar");
+  if(bar){
+    const accepted = localStorage.getItem(KEY) === "1";
+    if(!accepted) bar.style.display = "block";
+
+    const acceptBtn = bar.querySelector("[data-cookie-accept]");
+    if(acceptBtn){
+      acceptBtn.addEventListener("click", () => {
+        localStorage.setItem(KEY, "1");
+        bar.style.display = "none";
+      });
+    }
+  }
+
+  // Met à jour l'année dans le footer
+  const y = document.querySelector("[data-year]");
+  if(y) y.textContent = String(new Date().getFullYear());
+})();
 
