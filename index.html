@@ -1,608 +1,217 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FOXCARS – Inspection automobile indépendante</title>
-  <meta name="description" content="Inspection automobile indépendante : pré-achat, restitution LOA/LLD, expertise dommages. Gard et alentours." />
-
-  <style>
-    :root{
-      --bg:#0b0b0e;          /* noir profond */
-      --panel:#111116;       /* noir panel */
-      --text:#f2f2f4;        /* texte */
-      --muted:#b7b7c2;       /* texte secondaire */
-      --orange:#ff6a00;      /* orange FOXCARS */
-      --line:rgba(255,255,255,.08);
-      --shadow: 0 16px 40px rgba(0,0,0,.45);
-      --radius: 18px;
-      --max: 1100px;
-    }
-
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(255,106,0,.18), transparent 55%),
-                  radial-gradient(900px 500px at 80% 10%, rgba(255,106,0,.10), transparent 60%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 18px}
-
-    /* Top bar */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(11,11,14,.75);
-      border-bottom:1px solid var(--line);
-    }
-    .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 180px;
-    }
-    .logo{
-      width:38px; height:38px; border-radius:12px;
-      background: linear-gradient(135deg, var(--orange), #ff9a44);
-      box-shadow: 0 10px 22px rgba(255,106,0,.25);
-      display:grid; place-items:center;
-      font-weight:900; color:#111; letter-spacing:.5px;
-    }
-    .brand-title{
-      display:flex; flex-direction:column; gap:2px;
-    }
-    .brand-title strong{font-size:14px; letter-spacing:.8px}
-    .brand-title span{font-size:12px; color:var(--muted)}
-
-    /* Nav */
-    .nav{
-      display:flex; gap:10px; align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .nav a{
-      font-size:13px;
-      color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition:.15s ease;
-      white-space:nowrap;
-    }
-    .nav a:hover{
-      color:var(--text);
-      border-color: rgba(255,106,0,.35);
-      background: rgba(255,106,0,.08);
-    }
-    .cta{
-      display:flex; gap:10px; align-items:center;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:700;
-      font-size:13px;
-      transition:.15s ease;
-    }
-    .btn:hover{transform: translateY(-1px); border-color: rgba(255,106,0,.45)}
-    .btn-primary{
-      background: linear-gradient(135deg, var(--orange), #ff9a44);
-      color:#101014;
-      border-color: transparent;
-    }
-    .btn-primary:hover{filter: brightness(1.02)}
-
-    /* Hero */
-    .hero{
-      padding:44px 0 26px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    .card{
-      background: rgba(17,17,22,.78);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .hero-left{padding:26px}
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      font-size:12px; color:var(--muted);
-      padding:8px 12px;
-      border:1px solid rgba(255,106,0,.25);
-      background: rgba(255,106,0,.08);
-      border-radius:999px;
-    }
-    h1{
-      margin:14px 0 10px;
-      font-size:40px;
-      line-height:1.05;
-      letter-spacing:-.5px;
-    }
-    h1 .accent{color:var(--orange)}
-    .lead{
-      color:var(--muted);
-      font-size:15px;
-      max-width: 58ch;
-      margin:0 0 18px;
-    }
-    .hero-points{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-      margin-top:14px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius:14px;
-      padding:12px;
-      color:var(--text);
-      font-size:13px;
-    }
-    .pill small{display:block; color:var(--muted); font-size:12px; margin-top:2px}
-
-    /* Hero image card */
-    .hero-right{
-      display:flex; flex-direction:column;
-    }
-    .hero-img{
-      height:100%;
-      min-height: 280px;
-      background:
-        linear-gradient(180deg, rgba(11,11,14,.25), rgba(11,11,14,.85)),
-        url("assets/hero.jpg");
-      background-size:cover;
-      background-position:center;
-    }
-    .hero-img .overlay{
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:flex-end;
-      padding:18px;
-      gap:10px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(17,17,22,.65);
-      color:var(--muted);
-      font-size:12px;
-      width: fit-content;
-    }
-    .badge b{color:var(--text); font-weight:800}
-
-    /* Sections */
-    section{padding:34px 0}
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:14px;
-      margin-bottom:14px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-.2px;
-    }
-    .section-title p{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      max-width: 62ch;
-    }
-    .grid-3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    .box{
-      padding:18px;
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-    }
-    .box h3{margin:0 0 8px; font-size:16px}
-    .box p{margin:0; color:var(--muted); font-size:13px}
-    .box ul{margin:12px 0 0; padding-left:18px; color:var(--muted); font-size:13px}
-    .box li{margin:6px 0}
-
-    /* Pricing */
-    .price{
-      font-size:28px;
-      font-weight:900;
-      letter-spacing:-.5px;
-      margin:10px 0;
-    }
-    .price small{font-size:12px; color:var(--muted); font-weight:600}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,106,0,.25);
-      background: rgba(255,106,0,.08);
-      color:var(--text);
-      width: fit-content;
-    }
-    .muted{color:var(--muted)}
-
-    /* Partners */
-    .partners{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .partner{
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    /* Footer */
-    footer{
-      padding:22px 0 34px;
-      border-top:1px solid var(--line);
-      color:var(--muted);
-      font-size:12px;
-    }
-    footer a{color:var(--muted); text-decoration:underline}
-
-    /* Mobile */
-    @media (max-width: 900px){
-      .hero-grid{grid-template-columns: 1fr}
-      .hero-points{grid-template-columns: 1fr}
-      .grid-3{grid-template-columns: 1fr}
-      .grid-2{grid-template-columns: 1fr}
-      h1{font-size:34px}
-      .nav{display:none}
-      .brand{min-width:auto}
-    }
-  </style>
+  <meta name="description" content="FOXCARS – Inspection automobile indépendante : pré-achat, audit LOA/LLD, expertise dommages, véhicules anciens/collection. Gard et départements limitrophes." />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
-
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#accueil" aria-label="FOXCARS">
-        <div class="logo">F</div>
-        <div class="brand-title">
-          <strong>FOXCARS</strong>
-          <span>Inspection automobile</span>
-        </div>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="FOXCARS Accueil">
+        <span class="mark" aria-hidden="true"></span>
+        <span>
+          FoxCars
+          <small>Inspection automobile indépendante</small>
+        </span>
       </a>
 
-      <!-- Menu type "onglets" (ancres) -->
-      <nav class="nav" aria-label="Navigation">
-        <a href="#prestations">Prestations</a>
-        <a href="#tarifs">Tarifs</a>
-        <a href="#process">Déroulé</a>
-        <a href="#apropos">Qui sommes-nous</a>
-        <a href="#partenaires">Partenaires</a>
-        <a href="#contact">Contact</a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a href="services.html">Services</a>
+        <a href="tarifs.html">Tarifs</a>
+        <a href="a-propos.html">À propos</a>
+        <a href="contact.html">Contact</a>
       </nav>
 
-      <div class="cta">
-        <!-- Remplacez le téléphone si vous voulez -->
-        <a class="btn" href="tel:+33XXXXXXXXX">Appeler</a>
-        <a class="btn btn-primary" href="#contact">Demander un devis</a>
+      <div class="actions">
+        <a class="btn ghost" href="tel:0666545588" aria-label="Appeler FOXCARS">
+          <span class="icon" aria-hidden="true">📞</span>
+          06 66 54 55 88
+        </a>
+        <a class="btn primary" href="contact.html">
+          <span class="icon" aria-hidden="true">✉️</span>
+          Contact rapide
+        </a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- HERO -->
-  <div id="accueil" class="hero">
-    <div class="container hero-grid">
-      <div class="card hero-left">
-        <div class="kicker">⚡ Intervention mobile • Gard & alentours</div>
-        <h1>Inspection <span class="accent">FOXCARS</span> : <br/>décision d’achat claire, risque réduit.</h1>
-        <p class="lead">
-          Pré-achat, restitution LOA/LLD, expertise dommages : un contrôle structuré, des photos, et un avis exploitable.
-          Objectif : éviter les mauvaises surprises et sécuriser votre transaction.
-        </p>
+  <main>
+    <section class="hero">
+      <div class="container heroGrid">
 
-        <div class="cta" style="margin-top:14px">
-          <a class="btn btn-primary" href="mailto:contact@foxcars.fr">contact@foxcars.fr</a>
-          <a class="btn" href="#tarifs">Voir les tarifs</a>
-        </div>
+        <div class="heroCard">
+          <div class="inner">
+            <div class="kicker"><b>FOXCARS</b> • Gard & départements limitrophes</div>
 
-        <div class="hero-points">
-          <div class="pill">
-            <b>Pré-achat</b>
-            <small>État général + points à risque + photos</small>
-          </div>
-          <div class="pill">
-            <b>LOA / LLD</b>
-            <small>Audit avant restitution, litiges évités</small>
-          </div>
-          <div class="pill">
-            <b>Dommages</b>
-            <small>Constats & chiffrage indicatif</small>
-          </div>
-          <div class="pill">
-            <b>Rapport</b>
-            <small>Compte rendu simple et actionnable</small>
-          </div>
-        </div>
-      </div>
+            <h1>Inspection auto. Décision claire. Risque réduit.</h1>
+            <p class="lead">
+              Pré-achat, audit avant restitution LOA/LLD, expertise dommages, véhicules anciens/collection.
+              Intervention à domicile. Rapport photo + recommandations.
+            </p>
 
-      <div class="card hero-right">
-        <div class="hero-img">
-          <div class="overlay">
-            <div class="badge"><b>Astuce :</b> remplacez <code>assets/hero.jpg</code> par une photo FOXCARS (extérieur véhicule / inspection).</div>
-            <div class="badge"><b>Couleurs :</b> noir & orange déjà appliqués.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+            <div class="actions" style="margin-top:14px; flex-wrap:wrap">
+              <a class="btn primary" href="tel:0666545588">📞 Appeler maintenant</a>
+              <a class="btn" href="tarifs.html">Voir les tarifs</a>
+              <a class="btn ghost" href="services.html">Voir les prestations</a>
+            </div>
 
-  <!-- PRESTATIONS -->
-  <section id="prestations">
-    <div class="container">
-      <div class="section-title">
-        <h2>Prestations</h2>
-        <p>Un site vitrine qui rassure : clair, structuré, et centré sur la valeur client.</p>
-      </div>
+            <div class="badges" aria-label="Points forts">
+              <span class="badge"><i></i> Indépendant</span>
+              <span class="badge"><i></i> Photos + recommandations</span>
+              <span class="badge"><i></i> Du lundi au samedi • 9h–17h</span>
+            </div>
 
-      <div class="grid-3">
-        <div class="box">
-          <h3>Inspection pré-achat</h3>
-          <p>Idéal avant achat VO : contrôle visuel, points d’usure, cohérence, photos.</p>
-          <ul>
-            <li>Carrosserie / habitacle</li>
-            <li>Pneus / jantes / vitrages</li>
-            <li>Essai & constat (si prévu)</li>
-          </ul>
-        </div>
+            <div class="quick" aria-label="Raccourcis">
+              <div class="q">
+                <b>Pré-achat</b>
+                <span>Essentiel / Premium, rapport clair.</span>
+              </div>
+              <div class="q">
+                <b>LOA/LLD</b>
+                <span>Audit avant restitution, plan d’action.</span>
+              </div>
+              <div class="q">
+                <b>Ancien / Collection</b>
+                <span>Contrôle renforcé, vigilance historique.</span>
+              </div>
+            </div>
 
-        <div class="box">
-          <h3>Audit restitution LOA / LLD</h3>
-          <p>Objectif : anticiper les frais de remise en état avant retour du véhicule.</p>
-          <ul>
-            <li>Relevé de dommages</li>
-            <li>Photos et synthèse</li>
-            <li>Plan d’actions conseillé</li>
-          </ul>
-        </div>
-
-        <div class="box">
-          <h3>Expertise dommages</h3>
-          <p>Constat structuré des défauts et dommages + éléments pour décision.</p>
-          <ul>
-            <li>Rayures, bosses, impacts</li>
-            <li>Éléments à surveiller</li>
-            <li>Chiffrage indicatif (option)</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TARIFS -->
-  <section id="tarifs">
-    <div class="container">
-      <div class="section-title">
-        <h2>Tarifs</h2>
-        <p>Remplacez les prix ci-dessous par vos montants réels. Je ne les invente pas.</p>
-      </div>
-
-      <div class="grid-3">
-        <div class="box">
-          <div class="tag">Essentiel</div>
-          <h3>Pré-achat – Visuel & photos</h3>
-          <div class="price">€ <small>à définir</small></div>
-          <ul>
-            <li>Inspection visuelle structurée</li>
-            <li>Photos clés</li>
-            <li>Synthèse décisionnelle</li>
-          </ul>
-          <div class="cta" style="margin-top:14px">
-            <a class="btn btn-primary" href="#contact">Demander ce pack</a>
+            <div class="banner">
+              <p><b>Objectif :</b> vous éviter une mauvaise surprise et vous donner un plan d’action concret.</p>
+              <a class="btn primary" href="contact.html">Demander un rappel</a>
+            </div>
           </div>
         </div>
 
-        <div class="box" style="border-color: rgba(255,106,0,.35); background: rgba(255,106,0,.06)">
-          <div class="tag">Recommandé</div>
-          <h3>LOA/LLD – Audit avant restitution</h3>
-          <div class="price">€ <small>à définir</small></div>
-          <ul>
-            <li>Relevé de dommages complet</li>
-            <li>Photos et priorisation</li>
-            <li>Plan d’actions avant retour</li>
-          </ul>
-          <div class="cta" style="margin-top:14px">
-            <a class="btn btn-primary" href="#contact">Demander ce pack</a>
+        <div class="heroCard heroMedia" aria-label="Visuel">
+          <div class="photo" role="img" aria-label="Visuel FOXCARS (remplacez assets/hero.jpg)"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Ce que vous obtenez</h2>
+          <p>Une inspection orientée décision : faits, photos, recommandations. Pas de blabla.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Rapport photo</h3>
+            <p>Photos structurées + synthèse lisible. Vous savez quoi faire.</p>
+          </div>
+          <div class="card">
+            <h3>Recommandations</h3>
+            <p>Actions à prioriser : négociation, travaux, risques.</p>
+          </div>
+          <div class="card">
+            <h3>Indépendance</h3>
+            <p>Pas de conflit d’intérêt : votre décision passe avant tout.</p>
           </div>
         </div>
 
-        <div class="box">
-          <div class="tag">Premium</div>
-          <h3>Pré-achat + essai + approfondi</h3>
-          <div class="price">€ <small>à définir</small></div>
-          <ul>
-            <li>Inspection + essai (si possible)</li>
-            <li>Photos détaillées</li>
-            <li>Recommandations & risques</li>
-          </ul>
-          <div class="cta" style="margin-top:14px">
-            <a class="btn btn-primary" href="#contact">Demander ce pack</a>
+        <div class="notice">
+          <b>Professionnels :</b> inspections dédiées (sur devis) – réservées aux professionnels.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Tarifs rapides</h2>
+          <p>Transparence immédiate. Détails sur la page Tarifs.</p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Pré-achat • Essentiel</h3>
+            <ul class="list">
+              <li>Inspection visuelle + photos</li>
+              <li>Recommandations</li>
+            </ul>
+            <div class="price">
+              <span class="muted">Tarif</span>
+              <span class="val">149€</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Pré-achat • Premium</h3>
+            <ul class="list">
+              <li>Inspection + photos</li>
+              <li>Essai (si possible)</li>
+              <li>Recherche d’historique</li>
+              <li>Recommandations</li>
+            </ul>
+            <div class="price">
+              <span class="muted">Tarif</span>
+              <span class="val">249€</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Audit restitution LOA/LLD</h3>
+            <ul class="list">
+              <li>Relevé dommages + photos</li>
+              <li>Plan d’action avant retour</li>
+            </ul>
+            <div class="price">
+              <span class="muted">Tarif</span>
+              <span class="val">149€</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <p class="muted" style="margin-top:12px">
-        * Déplacements et options (chiffrage, photos supplémentaires, etc.) : à préciser selon votre politique tarifaire.
-      </p>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process">
-    <div class="container">
-      <div class="section-title">
-        <h2>Déroulé</h2>
-        <p>Simple, rassurant, efficace. L’objectif est de convertir sans noyer le visiteur.</p>
-      </div>
-
-      <div class="grid-2">
-        <div class="box">
-          <h3>1) Prise de contact</h3>
-          <p>Vous envoyez immatriculation + modèle + lieu + besoin (pré-achat / LOA-LLD / dommages).</p>
-        </div>
-        <div class="box">
-          <h3>2) Intervention & constat</h3>
-          <p>Inspection sur place, photos, points critiques, synthèse immédiate si besoin.</p>
-        </div>
-        <div class="box">
-          <h3>3) Restitution</h3>
-          <p>Compte rendu structuré, recommandations, et priorités d’action.</p>
-        </div>
-        <div class="box">
-          <h3>4) Décision</h3>
-          <p>Vous achetez / renégociez / corrigez avant restitution : vous reprenez la main.</p>
+        <div class="banner">
+          <p><b>Besoin d’un avis immédiat ?</b> Appelez et on voit ensemble la meilleure formule.</p>
+          <a class="btn primary" href="tel:0666545588">📞 06 66 54 55 88</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- A PROPOS -->
-  <section id="apropos">
-    <div class="container">
-      <div class="section-title">
-        <h2>Qui sommes-nous</h2>
-        <p>Texte court, crédible, orienté confiance. À personnaliser avec votre vrai parcours.</p>
+  <footer class="footer">
+    <div class="container footerGrid">
+      <div>
+        <div class="brand" style="margin-bottom:10px">
+          <span class="mark" aria-hidden="true"></span>
+          <span>
+            FoxCars
+            <small>Inspection automobile indépendante</small>
+          </span>
+        </div>
+        <small>
+          Horaires : du lundi au samedi • 9h à 17h • Téléphone : <a href="tel:0666545588">06 66 54 55 88</a><br/>
+          © <span data-year></span> FOXCARS. Tous droits réservés.
+        </small>
       </div>
 
-      <div class="grid-2">
-        <div class="box">
-          <h3>FOXCARS</h3>
-          <p>
-            Inspection automobile indépendante basée dans le Gard. Mission : sécuriser l’achat, limiter les litiges,
-            et réduire les coûts cachés. Méthode : contrôle structuré + photos + synthèse actionnable.
-          </p>
-        </div>
-
-        <div class="box">
-          <h3>Zone & mobilité</h3>
-          <p>
-            Intervention à domicile / sur site (selon votre organisation). Gard et départements limitrophes.
-            <br/><span class="muted">Remplacez cette phrase par votre zone exacte.</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PARTENAIRES -->
-  <section id="partenaires">
-    <div class="container">
-      <div class="section-title">
-        <h2>Avec qui nous travaillons</h2>
-        <p>Ne listez ici que vos partenaires réels. Sinon : “en cours de structuration”.</p>
-      </div>
-
-      <div class="box">
-        <div class="partners">
-          <span class="partner">Partenaire #1 (à remplacer)</span>
-          <span class="partner">Partenaire #2 (à remplacer)</span>
-          <span class="partner">Partenaire #3 (à remplacer)</span>
-          <span class="partner">Réseau / atelier (à remplacer)</span>
-        </div>
-        <p class="muted" style="margin-top:10px">
-          Astuce : si vous ne voulez pas afficher les noms, utilisez “Réseau d’ateliers partenaires” + “Experts indépendants”.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact direct (email/téléphone). Pas de formulaire compliqué : conversion rapide.</p>
-      </div>
-
-      <div class="grid-2">
-        <div class="box">
-          <h3>Demande rapide</h3>
-          <p class="muted">Cliquez et envoyez votre besoin : modèle, lieu, date, prestation.</p>
-          <div class="cta" style="margin-top:14px">
-            <a class="btn btn-primary" href="mailto:contact@foxcars.fr?subject=Demande%20FOXCARS&body=Bonjour%2C%0A%0AJe%20souhaite%20une%20prestation%20FOXCARS%20:%20%0A-%20Type%20(pre-achat%20/%20LOA-LLD%20/%20dommages)%20:%20%0A-%20Vehicule%20(modele%20/%20annee)%20:%20%0A-%20Lieu%20:%20%0A-%20Date%20souhaitee%20:%20%0A-%20Votre%20telephone%20:%20%0A%0AMerci%2C">
-              Écrire un email
-            </a>
-            <a class="btn" href="tel:+33XXXXXXXXX">Appeler</a>
-          </div>
-          <p class="muted" style="margin-top:10px">
-            Remplacez <code>+33XXXXXXXXX</code> par votre numéro réel.
-          </p>
-        </div>
-
-        <div class="box">
-          <h3>Infos légales</h3>
-          <p class="muted">
-            Ajoutez ensuite vos mentions : SIRET, adresse pro (si souhaitée), assurance RC Pro, etc.
-            <br/>Pour l’instant, gardez minimal et propre.
-          </p>
-          <ul>
-            <li>Email : <b>contact@foxcars.fr</b></li>
-            <li>Zone : <b>Gard & alentours</b></li>
-            <li>Horaires : <b>à définir</b></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:space-between; align-items:center">
-        <div>© <span id="y"></span> FOXCARS – Inspection automobile</div>
-        <div>
-          <a href="#apropos">À propos</a> ·
-          <a href="#contact">Contact</a> ·
-          <span class="muted">Mentions légales à ajouter</span>
-        </div>
+      <div class="footlinks" aria-label="Liens légaux">
+        <a href="mentions-legales.html">Mentions légales</a>
+        <a href="confidentialite.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cgv.html">CGVU</a>
       </div>
     </div>
   </footer>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
+  <div class="cookiebar" role="dialog" aria-label="Cookies">
+    <div class="box">
+      <p>
+        Ce site utilise uniquement des cookies techniques (fonctionnement).  
+        Voir la <a href="cookies.html">politique cookies</a>.
+      </p>
+      <button class="btn primary" data-cookie-accept>OK</button>
+    </div>
+  </div>
 
+  <script src="assets/main.js"></script>
 </body>
 </html>
