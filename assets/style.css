@@ -359,4 +359,242 @@ h1{
   border-radius: 12px;
   background: rgba(255,255,255,.04);
 }
+/* ===== FOXCARS — Accueil épuré ===== */
+:root{
+  --bg: #0b0b0d;
+  --panel: #121217;
+  --text: #f4f4f6;
+  --muted: rgba(244,244,246,.75);
+  --line: rgba(255,255,255,.10);
+  --orange: #ff6a00;
+}
+
+.theme-dark{
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container{
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(11,11,13,.85);
+  backdrop-filter: blur(10px);
+}
+
+.brand-logo{
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.site-nav{
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.site-nav a{
+  color: var(--text);
+  text-decoration: none;
+  opacity: .85;
+  font-weight: 600;
+}
+.site-nav a:hover{ opacity: 1; }
+
+.header-cta{
+  display: flex;
+  gap: 10px;
+}
+
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  border: 1px solid var(--line);
+  color: var(--text);
+}
+
+.btn-primary{
+  background: var(--orange);
+  border-color: rgba(0,0,0,.25);
+  color: #111;
+}
+
+.btn-ghost{
+  background: transparent;
+}
+
+.hero{
+  position: relative;
+  min-height: 62vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11,11,13,.92) 0%, rgba(11,11,13,.75) 45%, rgba(11,11,13,.35) 100%),
+    url("Actifs/hero.jpg") center/cover no-repeat;
+  transform: scale(1.02);
+}
+
+.hero-content{
+  position: relative;
+  width: min(900px, calc(100% - 40px));
+  padding: 48px 0;
+}
+
+.hero h1{
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.05;
+  margin: 0 0 12px 0;
+}
+
+.hero-lead{
+  margin: 0 0 18px 0;
+  font-size: 18px;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.hero-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0 18px 0;
+}
+
+.hero-badges{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge{
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid var(--line);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: .2px;
+}
+
+.section{
+  padding: 56px 0;
+}
+
+.section-muted{
+  background: rgba(255,255,255,.03);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+h2{
+  margin: 0 0 18px 0;
+  font-size: 28px;
+}
+
+.cards{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.card h3{
+  margin: 0 0 8px 0;
+}
+
+.card p{
+  margin: 0 0 12px 0;
+  color: var(--muted);
+}
+
+.link{
+  color: var(--orange);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.split{
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.cta-box{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.stack{
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.small{ color: var(--muted); font-size: 13px; }
+
+.site-footer{
+  padding: 26px 0;
+}
+
+.footer-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 14px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.footer-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-links a{
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 700;
+}
+.footer-links a:hover{ color: var(--text); }
+
+/* Responsive */
+@media (max-width: 900px){
+  .cards{ grid-template-columns: 1fr; }
+  .split{ grid-template-columns: 1fr; }
+  .site-nav{ display: none; } /* simple sur mobile (on pourra faire un menu ensuite) */
+}
 
