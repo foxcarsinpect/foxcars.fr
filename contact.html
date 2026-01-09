@@ -1,88 +1,174 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FOXCARS — Contact</title>
-  <meta name="description" content="Contact FOXCARS : appel direct au 06 66 54 55 88. Horaires : lundi-samedi 9h-17h.">
-  <link rel="stylesheet" href="Actifs/style.css">
-  <script defer src="Actifs/main.js"></script>
+  <meta name="description" content="Contact FOXCARS : appel direct, demande de devis et message rapide (copier-coller)." />
+
+  <!-- IMPORTANT : on garde Actifs -->
+  <link rel="stylesheet" href="actifs/style.css" />
+  <script defer src="actifs/main.js"></script>
 </head>
-<body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html">
-      <img src="actifs/logo.png" alt="FOXCARS">
-      <div class="brand-title">
-        <strong>FOXCARS</strong>
-        <span>Inspection automobile indépendante</span>
+<body class="theme-dark">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+        <img src="actifs/logo.png" alt="FOXCARS" class="brand-logo" />
+        <span class="brand-name">FOXCARS</span>
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link" href="services.html">Services</a>
+        <a class="nav-link" href="tarifs.html">Tarifs</a>
+        <a class="nav-link" href="a-propos.html">À propos</a>
+        <a class="nav-link is-active" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="tel" href="tel:+33666545588" aria-label="Appeler FOXCARS">06 66 54 55 88</a>
+        <a class="btn btn-primary" href="#devis">Demander un devis</a>
       </div>
-    </a>
-
-    <nav class="nav" aria-label="Navigation">
-      <a href="services.html">Services</a>
-      <a href="tarifs.html">Tarifs</a>
-      <a href="a-propos.html">À propos</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cta">
-      <a class="pill" href="tel:0666545588">📞 <strong>06 66 54 55 88</strong></a>
-      <a class="btn btn-primary" href="tel:0666545588">Appeler</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <div class="page-head">
-    <h1>Contact</h1>
-    <p>Le plus rapide : téléphone. Sinon, copiez/collez le message ci-dessous.</p>
-  </div>
+  <!-- HERO -->
+  <section class="hero hero--small" style="background-image:url('actifs/hero.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="kicker">FOXCARS</p>
+      <h1 class="hero-title">Contact</h1>
+      <p class="hero-subtitle">
+        Le plus rapide : <strong>téléphone</strong>. Sinon, utilisez le message prêt à copier-coller.
+      </p>
 
-  <section class="section">
-    <div class="grid">
-      <article class="card">
-        <h3>Appel direct</h3>
-        <p>
-          Téléphone : <a class="link" href="tel:0666545588">06 66 54 55 88</a><br>
-          Horaires : lundi → samedi, 9h–17h<br>
-          Zone : Gard + départements limitrophes
-        </p>
-        <div class="hr"></div>
-        <a class="btn btn-primary" href="tel:0666545588">Appeler</a>
-        <a class="btn" href="tarifs.html">Voir les tarifs</a>
-      </article>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+33666545588">Appeler</a>
+        <a class="btn btn-ghost" href="#message">Message rapide</a>
+      </div>
 
-      <article class="card">
-        <h3>Message (copier-coller)</h3>
-        <p class="note">
-          GitHub Pages ne peut pas envoyer d’e-mails via un formulaire. Pour un formulaire automatique, il faudra un service externe (Netlify/Render).
-        </p>
-        <div class="hr"></div>
-        <pre style="white-space:pre-wrap; color:var(--muted); margin:0">
-Bonjour, je souhaite une inspection FOXCARS.
-Type : Pré-achat / LOA-LLD / Collection / Pro
-Véhicule : Marque + Modèle + Année
-Lieu :
-Date souhaitée :
-        </pre>
-      </article>
+      <div class="hero-badges">
+        <span class="badge">Lun–Sam 9h–17h</span>
+        <span class="badge">Gard + limitrophes</span>
+        <span class="badge">Réponse claire</span>
+      </div>
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div class="container footer-row">
-    <div>© FOXCARS — Inspection automobile indépendante</div>
-    <div class="footer-links">
-      <a href="Mention-légales.html">Mentions légales</a>
-      <a href="confidentialité.html">Confidentialité</a>
-      <a href="Cookies.html">Cookies</a>
-      <a href="Ccv.html">CGVU</a>
+  <main class="section">
+    <div class="container">
+
+      <!-- CONTACT CARDS -->
+      <section class="grid two" id="devis">
+        <article class="card">
+          <h2>Appel direct</h2>
+          <p class="muted">
+            Pour une réponse immédiate et un créneau, l’appel reste le plus efficace.
+          </p>
+
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="info-label">Téléphone</span>
+              <a class="info-value" href="tel:+33666545588">06 66 54 55 88</a>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Horaires</span>
+              <span class="info-value">Lundi – Samedi • 9h – 17h</span>
+            </div>
+            <div class="info-item">
+              <span class="info-label">Zone</span>
+              <span class="info-value">Gard + départements limitrophes</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <a class="btn btn-primary" href="tel:+33666545588">Appeler maintenant</a>
+            <a class="btn btn-ghost" href="services.html">Voir les services</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <h2>Demande de devis (simple)</h2>
+          <p class="muted">
+            Donnez 4 infos et je vous réponds avec une proposition claire.
+          </p>
+
+          <ul class="list">
+            <li><strong>Type :</strong> Pré-achat / LOA-LLD / Collection / Pro</li>
+            <li><strong>Véhicule :</strong> Marque, modèle, année, kilométrage</li>
+            <li><strong>Lieu :</strong> ville / zone</li>
+            <li><strong>Délai :</strong> date souhaitée</li>
+          </ul>
+
+          <div class="card-actions">
+            <a class="btn btn-primary" href="#message">Remplir le message prêt</a>
+            <a class="btn btn-ghost" href="tarifs.html">Voir les tarifs</a>
+          </div>
+        </article>
+      </section>
+
+      <!-- MESSAGE -->
+      <section class="section" id="message">
+        <div class="card">
+          <h2>Message rapide (copier-coller)</h2>
+          <p class="muted">
+            Copiez ce texte et envoyez-le par SMS / mail selon votre usage.
+          </p>
+
+          <div class="copybox">
+            <pre id="messageTemplate">Bonjour, je souhaite une inspection FOXCARS.
+
+Type : Pré-achat / LOA-LLD / Collection / Pro
+Véhicule : Marque + Modèle + Année + Km
+Lieu : (ville)
+Contexte : achat / restitution / expertise
+Date souhaitée :
+Merci.</pre>
+
+            <div class="copy-actions">
+              <button class="btn btn-primary" type="button" data-copy="#messageTemplate">
+                Copier le message
+              </button>
+              <a class="btn btn-ghost" href="tel:+33666545588">Appeler</a>
+            </div>
+          </div>
+
+          <p class="muted small" style="margin-top:14px;">
+            Note : GitHub Pages ne peut pas envoyer d’e-mails via formulaire sans service externe (Netlify / Render / etc.).
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <div class="cta-box">
+          <div>
+            <h3>Besoin d’une décision rapide ?</h3>
+            <p class="muted">Je vous aide à décider : acheter, renégocier ou renoncer — sans blabla.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="tel:+33666545588">06 66 54 55 88</a>
+            <a class="btn btn-ghost" href="services.html">Voir les prestations</a>
+          </div>
+        </div>
+      </section>
+
     </div>
-  </div>
-</footer>
+  </main>
 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p class="muted">© FOXCARS — Inspection automobile indépendante.</p>
+      <div class="footer-links">
+        <a href="Mention-légales.html">Mentions légales</a>
+        <a href="confidentialité.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cgv.html">CGVU</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
