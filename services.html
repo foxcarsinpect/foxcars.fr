@@ -1,117 +1,214 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FOXCARS — Services</title>
-  <meta name="description" content="Prestations FOXCARS : pré-achat, audit LOA/LLD, véhicules anciens / collection, professionnels.">
-  <link rel="stylesheet" href="Actifs/style.css">
+  <meta name="description" content="Prestations FOXCARS : pré-achat, audit LOA/LLD, véhicules anciens/collection, professionnels (sur devis)." />
+
+  <!-- IMPORTANT : on garde Actifs -->
+  <link rel="stylesheet" href="actifs/style.css" />
   <script defer src="actifs/main.js"></script>
 </head>
-<body>
 
-<header class="site-header">
-  <div class="container header-inner">
-    <a class="brand" href="index.html">
-      <img src="actifs/logo.png" alt="FOXCARS">
-      <div class="brand-title">
-        <strong>FOXCARS</strong>
-        <span>Inspection automobile indépendante</span>
+<body class="theme-dark">
+  <!-- HEADER (même logique que l'accueil : logo + nav + téléphone) -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="index.html" aria-label="Retour à l'accueil">
+        <img src="actifs/logo.png" alt="FOXCARS" class="brand-logo" />
+        <span class="brand-name">FOXCARS</span>
+      </a>
+
+      <nav class="nav">
+        <a class="nav-link is-active" href="services.html">Services</a>
+        <a class="nav-link" href="tarifs.html">Tarifs</a>
+        <a class="nav-link" href="a-propos.html">À propos</a>
+        <a class="nav-link" href="contact.html">Contact</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="tel" href="tel:+33666545588" aria-label="Appeler FOXCARS">
+          06 66 54 55 88
+        </a>
+        <a class="btn btn-primary" href="contact.html">Demander un devis</a>
       </div>
-    </a>
-
-    <nav class="nav" aria-label="Navigation">
-      <a href="services.html">Services</a>
-      <a href="tarifs.html">Tarifs</a>
-      <a href="a-propos.html">À propos</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="cta">
-      <a class="pill" href="tel:0666545588">📞 <strong>06 66 54 55 88</strong></a>
-      <a class="btn btn-primary" href="contact.html">Demander un devis</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <div class="page-head">
-    <h1>Services</h1>
-    <p>Simple, factuel, orienté décision. Photos + constats + recommandations, sans conflit d’intérêt.</p>
-  </div>
+  <!-- HERO (image + titre + sous-titre) -->
+  <section class="hero hero--small" style="background-image:url('actifs/hero.jpg');">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="kicker">Inspection automobile indépendante</p>
+      <h1 class="hero-title">Services FOXCARS</h1>
+      <p class="hero-subtitle">
+        Simple, factuel, orienté décision. Photos + constats + recommandations claires, sans conflit d’intérêt.
+      </p>
 
-  <section class="section">
-    <div class="grid">
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tarifs.html">Voir les tarifs</a>
+        <a class="btn btn-ghost" href="tel:+33666545588">Appeler</a>
+      </div>
 
-      <article class="card" id="preachat">
-        <div class="tag">PRÉ-ACHAT</div>
-        <h3>Inspection pré-achat</h3>
-        <p>Limiter le risque : état, défauts, cohérence, points de vigilance.</p>
-        <ul>
-          <li>Inspection visuelle + photos</li>
-          <li>Constats structurés</li>
-          <li>Recommandations</li>
-          <li>Option essai + historique (Premium, si possible)</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="link" href="tarifs.html">Voir les packs & tarifs →</a>
-      </article>
-
-      <article class="card" id="loa">
-        <div class="tag">LOA / LLD</div>
-        <h3>Audit avant restitution LOA/LLD</h3>
-        <p>Anticiper les frais : relevé dommages et plan d’action avant retour.</p>
-        <ul>
-          <li>Relevé des dommages</li>
-          <li>Photos</li>
-          <li>Plan d’action avant restitution</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="link" href="tarifs.html#loa">Voir le tarif →</a>
-      </article>
-
-      <article class="card" id="collection">
-        <div class="tag">ANCIENS / COLLECTION</div>
-        <h3>Véhicules anciens / collection</h3>
-        <p>Approche renforcée : état, cohérence, vigilance sur l’historique.</p>
-        <ul>
-          <li>Inspection + photos</li>
-          <li>Essai (si possible)</li>
-          <li>Recherche d’historique</li>
-          <li>Recommandations</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="link" href="tarifs.html#collection">À partir de 299€ →</a>
-      </article>
-
-      <article class="card">
-        <div class="tag">PROFESSIONNELS</div>
-        <h3>Inspection professionnelle (sur devis)</h3>
-        <p>Prestation dédiée selon volume, process et livrables.</p>
-        <ul>
-          <li>Cadre contractuel</li>
-          <li>Rapports & formats adaptés</li>
-          <li>Délais & SLA si nécessaire</li>
-        </ul>
-        <div class="hr"></div>
-        <a class="link" href="contact.html">Demander un devis →</a>
-      </article>
-
+      <div class="hero-badges">
+        <span class="badge">Gard + départements limitrophes</span>
+        <span class="badge">Approche factuelle</span>
+        <span class="badge">Photos & constats</span>
+      </div>
     </div>
   </section>
-</main>
 
-<footer class="footer">
-  <div class="container footer-row">
-    <div>© FOXCARS — Inspection automobile indépendante</div>
-    <div class="footer-links">
-      <a href="Mention-légales.html">Mentions légales</a>
-      <a href="confidentialité.html">Confidentialité</a>
-      <a href="cookies.html">Cookies</a>
-      <a href="cgv.html">CGVU</a>
+  <!-- CONTENU -->
+  <main class="section">
+    <div class="container">
+
+      <h2 class="section-title">Choisissez votre prestation</h2>
+      <p class="section-desc">
+        Chaque prestation vise un résultat : <strong>décider</strong>, <strong>renégocier</strong> ou <strong>renoncer</strong>.
+      </p>
+
+      <div class="grid cards">
+
+        <!-- PRE-ACHAT ESSENTIEL -->
+        <article class="card">
+          <div class="card-head">
+            <h3>Pré-achat — Essentiel</h3>
+            <p class="price">149€</p>
+          </div>
+          <p class="muted">
+            Limiter le risque avant achat : état, défauts, cohérence, points de vigilance.
+          </p>
+          <ul class="list">
+            <li>Inspection visuelle + photos</li>
+            <li>Constats structurés</li>
+            <li>Recommandations</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">Demander un devis</a>
+            <a class="btn btn-ghost" href="tarifs.html">Détails tarifs</a>
+          </div>
+        </article>
+
+        <!-- PRE-ACHAT PREMIUM -->
+        <article class="card">
+          <div class="card-head">
+            <h3>Pré-achat — Premium</h3>
+            <p class="price">249€</p>
+          </div>
+          <p class="muted">
+            Pour aller plus loin : essai (si possible) + historique, avec recommandations exploitables.
+          </p>
+          <ul class="list">
+            <li>Inspection + photos</li>
+            <li>Essai (si possible)</li>
+            <li>Recherche d’historique</li>
+            <li>Recommandations</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">Demander un devis</a>
+            <a class="btn btn-ghost" href="tarifs.html">Détails tarifs</a>
+          </div>
+        </article>
+
+        <!-- LOA/LLD -->
+        <article class="card">
+          <div class="card-head">
+            <h3>Audit avant restitution LOA/LLD</h3>
+            <p class="price">149€</p>
+          </div>
+          <p class="muted">
+            Anticiper les frais : relevé des dommages + plan d’action avant retour.
+          </p>
+          <ul class="list">
+            <li>Relevé dommages</li>
+            <li>Photos</li>
+            <li>Plan d’action avant retour</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">Demander un devis</a>
+            <a class="btn btn-ghost" href="tarifs.html">Détails tarifs</a>
+          </div>
+        </article>
+
+        <!-- ANCIENS/COLLECTION -->
+        <article class="card">
+          <div class="card-head">
+            <h3>Véhicules anciens / collection</h3>
+            <p class="price">Dès 299€</p>
+          </div>
+          <p class="muted">
+            Approche renforcée : cohérence, état, vigilance sur l’historique.
+          </p>
+          <ul class="list">
+            <li>Inspection + photos</li>
+            <li>Essai (si possible)</li>
+            <li>Recherche d’historique</li>
+            <li>Recommandations</li>
+          </ul>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">Demander un devis</a>
+            <a class="btn btn-ghost" href="tarifs.html">Détails tarifs</a>
+          </div>
+        </article>
+
+        <!-- PRO -->
+        <article class="card card--wide">
+          <div class="card-head">
+            <h3>Professionnels (sur devis)</h3>
+            <p class="price">Sur devis</p>
+          </div>
+          <p class="muted">
+            Prestation dédiée (réservée aux pros) selon volume, process et livrables.
+          </p>
+          <div class="grid-mini">
+            <ul class="list">
+              <li>Cadre contractuel</li>
+              <li>Rapports et formats adaptés</li>
+            </ul>
+            <ul class="list">
+              <li>Délais et SLA si nécessaire</li>
+              <li>Process d’intervention</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-primary" href="contact.html">Demander un devis</a>
+            <a class="btn btn-ghost" href="tel:+33666545588">Appeler</a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- CTA BAS DE PAGE -->
+      <section class="cta">
+        <div class="cta-box">
+          <div>
+            <h3>Besoin d’une décision claire ?</h3>
+            <p class="muted">
+              Dites-moi le véhicule, la zone, et votre échéance. Je vous réponds avec une proposition simple.
+            </p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="contact.html">Contact rapide</a>
+            <a class="btn btn-ghost" href="tel:+33666545588">06 66 54 55 88</a>
+          </div>
+        </div>
+      </section>
+
     </div>
-  </div>
-</footer>
+  </main>
 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <p class="muted">© FOXCARS — Inspection automobile indépendante.</p>
+      <div class="footer-links">
+        <a href="Mention-légales.html">Mentions légales</a>
+        <a href="confidentialité.html">Confidentialité</a>
+        <a href="cookies.html">Cookies</a>
+        <a href="cgv.html">CGVU</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
