@@ -343,4 +343,20 @@ h1{
 @media (max-width: 720px){
   .menu{display:none}
 }
+.page-head { max-width: 980px; margin: 0 auto 24px; }
+.page-head h1 { font-size: 40px; margin: 0 0 8px; }
+.lead { font-size: 18px; opacity: .9; }
+
+.content { max-width: 980px; margin: 0 auto; line-height: 1.7; }
+.content h2 { margin-top: 28px; font-size: 22px; }
+.content ul { margin: 12px 0 0 18px; }
+
+.quote-box {
+  margin-top: 28px;
+  padding: 18px 18px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-left: 4px solid #ff6a00;
+  border-radius: 12px;
+  background: rgba(255,255,255,.04);
+}
 
