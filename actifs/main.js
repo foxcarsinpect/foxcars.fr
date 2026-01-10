@@ -1,10 +1,18 @@
-// Active link in nav based on current page
-(function(){
-  const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-  document.querySelectorAll('.nav a').forEach(a=>{
-    const href = (a.getAttribute('href') || '').toLowerCase();
-    if(href === path) a.classList.add('active');
-    if(path === '' && href === 'index.html') a.classList.add('active');
-  });
-})();
+(function () {
+  const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
+  const map = {
+    "index.html": "nav-home",
+    "services.html": "nav-services",
+    "tarifs.html": "nav-tarifs",
+    "a-propos.html": "nav-apropos",
+    "contact.html": "nav-contact",
+    "mention-legales.html": "nav-legal",
+  };
+
+  const id = map[path];
+  if (id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add("active");
+  }
+})();
