@@ -7,7 +7,7 @@
     "tarifs.html": "nav-tarifs",
     "a-propos.html": "nav-apropos",
     "contact.html": "nav-contact",
-    "mention-legales.html": "nav-legal",
+    "Mention-legales.html": "nav-legal",
   };
 
   const id = map[path];
