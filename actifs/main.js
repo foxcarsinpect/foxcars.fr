@@ -10,7 +10,6 @@
     "tarifs.html": "nav-tarifs",
     "a-propos.html": "nav-apropos",
     "contact.html": "nav-contact",
-    "preachat.html": "nav-preachat",
     "mention-legales.html": "nav-legal",
   };
 
