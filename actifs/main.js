@@ -10,7 +10,6 @@
     "tarifs.html": "nav-tarifs",
     "a-propos.html": "nav-apropos",
     "contact.html": "nav-contact",
-    "preachat.html": "nav-preachat",
     "mention-legales.html": "nav-legal",
   };
 
@@ -166,7 +165,7 @@
 
       // Show notification
       const notification = document.createElement('div');
-      notification.textContent = '🦊 Mode FOXCARS Turbo activé! 🚀';
+      notification.textContent = ' Mode FOXCARS Turbo activé! 🚀';
       notification.style.cssText = `
         position: fixed;
         top: 100px;
@@ -199,7 +198,7 @@
     });
   }
 
-  console.log('%c🦊 FOXCARS Website', 'color: #ff6a00; font-size: 20px; font-weight: bold;');
+  console.log('%c FOXCARS Website', 'color: #ff6a00; font-size: 20px; font-weight: bold;');
   console.log('%cInspection automobile indépendante', 'color: #ff8533; font-size: 14px;');
   console.log('%c📞 06 66 54 55 88', 'color: white; font-size: 16px; font-weight: bold;');
 })();
