@@ -442,6 +442,12 @@ a:hover{ text-decoration:none; }
 }
 
 /* === RESPONSIVE === */
+
+/* Masquer le numéro de téléphone dans le header dès 1200px pour libérer de l'espace */
+@media (max-width: 1200px){
+  .actions .pill[href^="tel"]{ display:none; }
+}
+
 @media (max-width: 980px){
   .heroGrid{
     grid-template-columns: 1fr;
