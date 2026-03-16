@@ -58,15 +58,16 @@ a:hover{ text-decoration:none; }
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:18px;
-  padding:16px 0;
+  gap:12px;
+  padding:14px 0;
+  flex-wrap:nowrap;
 }
 
 .brand{
   display:flex;
   align-items:center;
-  gap:14px;
-  min-width: 260px;
+  gap:12px;
+  flex-shrink:0;
   transition: transform 0.3s ease;
 }
 .brand:hover{
@@ -97,15 +98,16 @@ a:hover{ text-decoration:none; }
 .menu{
   display:flex;
   align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
+  gap:2px;
+  flex-wrap:nowrap;
   justify-content:center;
+  flex:1;
 }
 
 .menu a{
-  font-size:14px;
+  font-size:13px;
   color:var(--muted);
-  padding:10px 16px;
+  padding:9px 12px;
   border-radius:999px;
   border:1px solid transparent;
   position:relative;
@@ -137,10 +139,10 @@ a:hover{ text-decoration:none; }
 .actions{
   display:flex;
   align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
+  gap:8px;
+  flex-wrap:nowrap;
   justify-content:flex-end;
-  min-width: 340px;
+  flex-shrink:0;
 }
 
 .pill{
@@ -446,10 +448,10 @@ a:hover{ text-decoration:none; }
     gap:16px;
   }
   .h1{ font-size:38px; }
-  .brand{ min-width:auto; }
-  .actions{ min-width:auto; justify-content:flex-start; }
   .grid3{ grid-template-columns: 1fr; }
-  .nav{ flex-wrap:wrap; }
+  .nav{ flex-wrap:wrap; gap:8px; }
+  .menu{ flex:none; width:100%; order:3; justify-content:flex-start; flex-wrap:wrap; }
+  .actions{ order:2; }
 }
 
 @media (max-width: 640px){
