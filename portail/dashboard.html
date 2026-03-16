@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS — Mes Inspections</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="/portail/dashboard.html" aria-label="FOXCARS - Tableau de bord">
+        <img src="../actifs/logo.png" alt="FOXCARS">
+        <div class="title">
+          <strong>FOXCARS</strong>
+          <span>Espace Client</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <div class="user-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+          </svg>
+          <span id="user-name">…</span>
+        </div>
+        <button id="logout-btn" class="btn btn-ghost btn-sm" title="Se déconnecter">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Déconnexion
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="container">
+
+    <div class="page-head">
+      <h1>Mes Inspections</h1>
+      <p>Retrouvez ici tous vos rapports d'inspection transmis par FOXCARS.</p>
+    </div>
+
+    <!-- Spinner pendant le chargement -->
+    <div id="loading" class="spinner-wrap">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Grille des inspections (injectée par JS) -->
+    <div id="inspections-grid" class="inspections-grid" style="display:none;"></div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-row">
+    <div>© FOXCARS — Inspection automobile indépendante</div>
+    <div>
+      <a href="https://foxcars.fr">foxcars.fr</a> ·
+      <a href="https://foxcars.fr/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/dashboard.js"></script>
+<script>
+(async function () {
+  const session = await requireAuth();
+  if (!session) return;
+
+  await renderUserHeader();
+
+  const loading = document.getElementById('loading');
+  const grid    = document.getElementById('inspections-grid');
+
+  await loadDashboard();
+
+  loading.style.display = 'none';
+  grid.style.display    = 'grid';
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS — Espace Client</title>
+  <meta name="description" content="Connectez-vous à votre espace client FOXCARS pour consulter vos inspections.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+
+<div class="login-page">
+  <div class="card login-box">
+
+    <div class="login-logo">
+      <img src="../actifs/logo.png" alt="FOXCARS">
+      <div class="title">
+        <strong>FOXCARS</strong>
+        <span>Inspection automobile indépendante</span>
+      </div>
+    </div>
+
+    <h1 class="login-title">Espace Client</h1>
+    <p class="login-subtitle">
+      Connectez-vous pour accéder à vos rapports d'inspection et vos photos.
+    </p>
+
+    <form id="login-form" novalidate>
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input
+          id="email"
+          type="email"
+          class="form-input"
+          placeholder="votre@email.fr"
+          autocomplete="email"
+          required
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input
+          id="password"
+          type="password"
+          class="form-input"
+          placeholder="••••••••"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <button type="submit" id="login-btn" class="btn btn-full">
+        <span id="btn-text">Se connecter</span>
+        <span id="btn-spinner" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          Connexion…
+        </span>
+      </button>
+
+      <div id="error-msg" class="error-msg"></div>
+    </form>
+
+    <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--line); text-align:center;">
+      <p style="margin:0; font-size:12px; color:var(--muted);">
+        Problème de connexion ?
+        <a href="../contact.html" style="color:var(--orange-bright);">Contactez-nous</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Supabase SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/auth.js"></script>
+<script>
+(async function () {
+  // Redirige si déjà connecté
+  await redirectIfLoggedIn();
+
+  const form     = document.getElementById('login-form');
+  const btn      = document.getElementById('login-btn');
+  const btnText  = document.getElementById('btn-text');
+  const btnSpin  = document.getElementById('btn-spinner');
+  const errorMsg = document.getElementById('error-msg');
+
+  function setLoading(on) {
+    btn.disabled   = on;
+    btnText.style.display = on ? 'none' : '';
+    btnSpin.style.display = on ? 'inline-flex' : 'none';
+  }
+
+  function showError(msg) {
+    errorMsg.textContent = msg;
+    errorMsg.classList.add('show');
+  }
+
+  function hideError() {
+    errorMsg.classList.remove('show');
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    hideError();
+
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      showError('Veuillez renseigner votre e-mail et mot de passe.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await login(email, password);
+      window.location.href = '/portail/dashboard.html';
+    } catch (err) {
+      const messages = {
+        'Invalid login credentials': 'E-mail ou mot de passe incorrect.',
+        'Email not confirmed': 'Veuillez confirmer votre adresse e-mail.',
+        'Too many requests': 'Trop de tentatives. Réessayez dans quelques minutes.',
+      };
+      showError(messages[err.message] || 'Erreur de connexion. Réessayez.');
+      setLoading(false);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

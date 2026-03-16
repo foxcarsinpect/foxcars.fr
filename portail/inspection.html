@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS — Inspection</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="/portail/dashboard.html" aria-label="FOXCARS - Tableau de bord">
+        <img src="../actifs/logo.png" alt="FOXCARS">
+        <div class="title">
+          <strong>FOXCARS</strong>
+          <span>Espace Client</span>
+        </div>
+      </a>
+
+      <div class="nav-right">
+        <div class="user-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+          </svg>
+          <span id="user-name">…</span>
+        </div>
+        <button id="logout-btn" class="btn btn-ghost btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+            <polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Déconnexion
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="container" style="padding-top:28px;">
+
+    <!-- Spinner -->
+    <div id="loading" class="spinner-wrap">
+      <div class="spinner"></div>
+    </div>
+
+    <!-- Contenu (caché pendant le chargement) -->
+    <div id="content" style="display:none;">
+
+      <!-- Retour -->
+      <a href="/portail/dashboard.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Retour aux inspections
+      </a>
+
+      <!-- Header inspection -->
+      <div class="insp-detail-header">
+        <div class="insp-detail-title">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px;">
+            <h1 id="insp-title">…</h1>
+            <span id="insp-badge" class="badge"></span>
+          </div>
+          <p id="insp-subtitle" style="margin:0;color:var(--muted);font-size:14px;"></p>
+        </div>
+
+        <div class="export-actions">
+          <button id="btn-pdf" class="btn btn-sm" onclick="exportPDF()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+            Exporter PDF
+          </button>
+          <button id="btn-zip" class="btn btn-sm btn-ghost" onclick="exportZIP()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Photos ZIP
+          </button>
+        </div>
+      </div>
+
+      <!-- Fiches véhicule + inspection -->
+      <div class="detail-grid">
+        <div class="card detail-card">
+          <h3>Véhicule</h3>
+          <div id="vehicle-fields"></div>
+        </div>
+        <div class="card detail-card">
+          <h3>Inspection</h3>
+          <div id="inspection-fields"></div>
+        </div>
+      </div>
+
+      <!-- Rapport dynamique -->
+      <div id="report-container"></div>
+
+      <!-- Notes -->
+      <div id="notes-container"></div>
+
+      <!-- Photos -->
+      <div class="card photos-section">
+        <h3>
+          Photos
+          <span id="photos-count" style="font-size:12px;font-weight:400;color:var(--muted);margin-left:8px;text-transform:none;letter-spacing:0;"></span>
+        </h3>
+        <div id="photos-grid" class="photos-grid">
+          <div class="spinner-wrap"><div class="spinner"></div></div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-row">
+    <div>© FOXCARS — Inspection automobile indépendante</div>
+    <div>
+      <a href="https://foxcars.fr">foxcars.fr</a> ·
+      <a href="https://foxcars.fr/contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse de photos">
+  <div class="lightbox-content">
+    <img id="lb-img" class="lightbox-img" src="" alt="">
+    <p id="lb-caption" class="lightbox-caption"></p>
+  </div>
+  <button class="lightbox-close" id="lb-close" aria-label="Fermer">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Photo précédente">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Photo suivante">›</button>
+</div>
+
+<!-- Librairies -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/inspection.js"></script>
+<script>
+(async function () {
+  const session = await requireAuth();
+  if (!session) return;
+
+  await renderUserHeader();
+  initLightbox();
+
+  const params = new URLSearchParams(window.location.search);
+  const id     = params.get('id');
+
+  if (!id) {
+    window.location.href = '/portail/dashboard.html';
+    return;
+  }
+
+  await loadInspection(id);
+})();
+</script>
+
+</body>
+</html>
