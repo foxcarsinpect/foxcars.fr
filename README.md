@@ -1,2 +1,2 @@
 # foxcars.fr
-site vitrine officiel FOXCARS - Inspection automobile indépendante.
+site vitrine officiel FOXCARS - Inspection automobile.
