@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS — Administration</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<div class="login-page">
+  <div class="card login-box">
+
+    <div class="login-logo">
+      <img src="../actifs/logo.png" alt="FOXCARS">
+      <div class="title">
+        <strong>FOXCARS</strong>
+        <span>Inspection automobile indépendante</span>
+      </div>
+    </div>
+
+    <div class="admin-tag">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <rect x="3" y="11" width="18" height="11" rx="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Administration
+    </div>
+
+    <h1 class="login-title">Espace Admin</h1>
+    <p class="login-subtitle">Accès réservé à FOXCARS.</p>
+
+    <form id="login-form" novalidate>
+      <div class="form-group" style="margin-bottom:16px;">
+        <label for="email">Adresse e-mail</label>
+        <input id="email" type="email" class="form-input" placeholder="admin@foxcars.fr"
+          autocomplete="email" required>
+      </div>
+
+      <div class="form-group" style="margin-bottom:20px;">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" class="form-input" placeholder="••••••••"
+          autocomplete="current-password" required>
+      </div>
+
+      <button type="submit" id="login-btn" class="btn btn-full">
+        <span id="btn-text">Se connecter</span>
+        <span id="btn-spinner" style="display:none;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          Connexion…
+        </span>
+      </button>
+
+      <div id="error-msg" class="error-msg"></div>
+    </form>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/admin-auth.js"></script>
+<script>
+(async function () {
+  await redirectIfAdminLoggedIn();
+
+  const form    = document.getElementById('login-form');
+  const btn     = document.getElementById('login-btn');
+  const btnText = document.getElementById('btn-text');
+  const btnSpin = document.getElementById('btn-spinner');
+  const errMsg  = document.getElementById('error-msg');
+
+  function setLoading(on) {
+    btn.disabled = on;
+    btnText.style.display = on ? 'none' : '';
+    btnSpin.style.display = on ? 'inline-flex' : 'none';
+  }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    errMsg.classList.remove('show');
+
+    const email    = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+      errMsg.textContent = 'Veuillez renseigner vos identifiants.';
+      errMsg.classList.add('show');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await adminLogin(email, password);
+      window.location.href = '/admin/dashboard.html';
+    } catch (err) {
+      const msgs = {
+        'NOT_ADMIN': 'Ce compte n\'a pas les droits d\'administration.',
+        'Invalid login credentials': 'E-mail ou mot de passe incorrect.',
+        'Too many requests': 'Trop de tentatives. Réessayez dans quelques minutes.',
+      };
+      errMsg.textContent = msgs[err.message] || 'Erreur de connexion. Réessayez.';
+      errMsg.classList.add('show');
+      setLoading(false);
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

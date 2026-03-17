@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS Admin — Inspection</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="../actifs/logo.png" alt="FOXCARS">
+      <div class="brand-text">
+        <strong>FOXCARS</strong>
+        <span>Administration</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        Tableau de bord
+      </a>
+      <a href="clients.html" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          <path d="M21 21v-2a4 4 0 0 0-3-3.85"/>
+        </svg>
+        Clients
+      </a>
+      <a href="inspection-form.html" class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nouvelle inspection
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+        </svg>
+        <div>
+          <div class="admin-name" id="admin-name">…</div>
+          <div class="admin-role">Admin</div>
+        </div>
+      </div>
+      <button id="logout-btn" class="btn btn-ghost btn-sm" style="width:100%;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <header class="topbar">
+      <span class="topbar-title" id="page-title">Nouvelle inspection</span>
+      <a href="dashboard.html" class="btn btn-sm btn-ghost">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Retour
+      </a>
+    </header>
+
+    <div class="page-body" id="loading-wrap">
+      <div class="spinner-wrap"><div class="spinner"></div></div>
+    </div>
+
+    <div class="page-body" id="form-wrap" style="display:none;">
+
+      <div id="global-alert" style="margin-bottom:16px;"></div>
+
+      <!-- SECTION VÉHICULE -->
+      <div class="card form-section" style="margin-bottom:20px;">
+        <h3 class="form-section-title">Véhicule</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-make">Marque *</label>
+            <input id="f-make" type="text" class="form-input" placeholder="Peugeot">
+          </div>
+          <div class="form-group">
+            <label for="f-model">Modèle *</label>
+            <input id="f-model" type="text" class="form-input" placeholder="308">
+          </div>
+          <div class="form-group">
+            <label for="f-year">Année</label>
+            <input id="f-year" type="number" class="form-input" placeholder="2020" min="1900" max="2100">
+          </div>
+          <div class="form-group">
+            <label for="f-plate">Plaque</label>
+            <input id="f-plate" type="text" class="form-input" placeholder="AB-123-CD">
+          </div>
+          <div class="form-group">
+            <label for="f-vin">VIN</label>
+            <input id="f-vin" type="text" class="form-input" placeholder="VF30DYHZRLS123456">
+          </div>
+          <div class="form-group">
+            <label for="f-km">Kilométrage</label>
+            <input id="f-km" type="number" class="form-input" placeholder="75000" min="0">
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION INSPECTION -->
+      <div class="card form-section" style="margin-bottom:20px;">
+        <h3 class="form-section-title">Inspection</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-client">Client *</label>
+            <select id="f-client" class="form-select">
+              <option value="">— Sélectionner un client —</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-date">Date d'inspection *</label>
+            <input id="f-date" type="date" class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="f-status">Statut</label>
+            <select id="f-status" class="form-select">
+              <option value="transmitted">Transmis</option>
+              <option value="in_progress">En cours</option>
+              <option value="completed">Terminé</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-inspector">Inspecteur</label>
+            <input id="f-inspector" type="text" class="form-input" value="FOXCARS">
+          </div>
+          <div class="form-group form-full">
+            <label for="f-notes">Notes & observations</label>
+            <textarea id="f-notes" class="form-textarea" placeholder="Points de vigilance, observations générales…" rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION PHOTOS (seulement en mode édition) -->
+      <div class="card form-section" id="photos-section" style="display:none;margin-bottom:20px;">
+        <h3 class="form-section-title">
+          Photos
+          <span id="photos-count" style="font-size:11px;font-weight:400;color:var(--muted);margin-left:8px;text-transform:none;letter-spacing:0;"></span>
+        </h3>
+
+        <!-- Photos existantes -->
+        <div id="existing-photos" class="photos-preview" style="margin-bottom:16px;"></div>
+
+        <!-- Zone upload -->
+        <div class="upload-zone" id="upload-zone">
+          <input type="file" id="file-input" multiple accept="image/*">
+          <div class="upload-zone-text">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.5" style="display:block;margin:0 auto 10px;opacity:.4;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <strong>Cliquez</strong> ou glissez vos photos ici<br>
+            <span style="font-size:11px;margin-top:4px;display:block;">JPG, PNG, WEBP — plusieurs fichiers acceptés</span>
+          </div>
+        </div>
+
+        <!-- Aperçu des nouvelles photos -->
+        <div id="new-photos-preview" class="photos-preview" style="margin-top:16px;"></div>
+
+        <!-- Barre de progression -->
+        <div id="upload-progress" class="upload-progress" style="display:none;"></div>
+      </div>
+
+      <!-- ACTIONS -->
+      <div style="display:flex;gap:12px;justify-content:flex-end;padding-bottom:40px;">
+        <a href="dashboard.html" class="btn btn-ghost">Annuler</a>
+        <button id="btn-save" class="btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+            <polyline points="17 21 17 13 7 13 7 21"/>
+            <polyline points="7 3 7 8 15 8"/>
+          </svg>
+          <span id="save-text">Enregistrer</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/admin-auth.js"></script>
+<script src="assets/inspection-form.js"></script>
+<script>
+(async function () {
+  const auth = await requireAdmin();
+  if (!auth) return;
+  renderAdminHeader();
+  await initForm();
+})();
+</script>
+
+</body>
+</html>
