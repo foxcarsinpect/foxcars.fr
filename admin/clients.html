@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOXCARS Admin — Clients</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="assets/admin.css">
+</head>
+<body>
+
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <img src="../actifs/logo.png" alt="FOXCARS">
+      <div class="brand-text">
+        <strong>FOXCARS</strong>
+        <span>Administration</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+          <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+        </svg>
+        Tableau de bord
+      </a>
+      <a href="clients.html" class="nav-item active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          <path d="M21 21v-2a4 4 0 0 0-3-3.85"/>
+        </svg>
+        Clients
+      </a>
+      <a href="inspection-form.html" class="nav-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nouvelle inspection
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-badge">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/>
+        </svg>
+        <div>
+          <div class="admin-name" id="admin-name">…</div>
+          <div class="admin-role">Admin</div>
+        </div>
+      </div>
+      <button id="logout-btn" class="btn btn-ghost btn-sm" style="width:100%;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+          <polyline points="16 17 21 12 16 7"/>
+          <line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+        Déconnexion
+      </button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <header class="topbar">
+      <span class="topbar-title">Clients</span>
+      <button class="btn btn-sm" id="btn-new-client">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nouveau client
+      </button>
+    </header>
+
+    <div class="page-body">
+
+      <div class="filter-bar">
+        <input type="search" class="search-input" id="search-input"
+          placeholder="Rechercher nom, email, société…" style="margin-left:0;">
+      </div>
+
+      <div id="loading" class="spinner-wrap"><div class="spinner"></div></div>
+
+      <div id="content" style="display:none;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Société</th>
+                <th>E-mail</th>
+                <th>Téléphone</th>
+                <th>Inspections</th>
+                <th>Créé le</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="clients-body"></tbody>
+          </table>
+        </div>
+        <div id="empty-state" class="empty-state" style="display:none;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="7" r="4"/><path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+          </svg>
+          <h3>Aucun client</h3>
+          <p>Créez votre premier client.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOUVEAU CLIENT -->
+<div id="modal-new-client" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 class="modal-title">Nouveau client</h2>
+      <button class="modal-close" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="modal-alert"></div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="c-name">Nom complet *</label>
+          <input id="c-name" type="text" class="form-input" placeholder="Jean Dupont">
+        </div>
+        <div class="form-group">
+          <label for="c-company">Société</label>
+          <input id="c-company" type="text" class="form-input" placeholder="Dupont Auto">
+        </div>
+        <div class="form-group">
+          <label for="c-email">E-mail *</label>
+          <input id="c-email" type="email" class="form-input" placeholder="jean@exemple.fr">
+        </div>
+        <div class="form-group">
+          <label for="c-phone">Téléphone</label>
+          <input id="c-phone" type="tel" class="form-input" placeholder="06 12 34 56 78">
+        </div>
+        <div class="form-group form-full">
+          <label for="c-password">Mot de passe temporaire *</label>
+          <input id="c-password" type="text" class="form-input" placeholder="Min. 8 caractères">
+          <span style="font-size:11px;color:var(--muted);margin-top:4px;">
+            Le client recevra un e-mail de confirmation et pourra changer son mot de passe.
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="modal-cancel">Annuler</button>
+      <button class="btn" id="modal-save">
+        <span id="save-text">Créer le compte</span>
+        <span id="save-spin" style="display:none;">Création…</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL RESET MDP -->
+<div id="modal-reset" class="modal-overlay">
+  <div class="modal" style="max-width:400px;">
+    <div class="modal-header">
+      <h2 class="modal-title">Réinitialiser le mot de passe</h2>
+      <button class="modal-close" id="reset-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin:0 0 16px;color:var(--muted);font-size:14px;">
+        Un e-mail de réinitialisation sera envoyé à :
+      </p>
+      <p id="reset-email-display" style="margin:0;font-weight:600;font-size:15px;"></p>
+      <div id="reset-alert" style="margin-top:16px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="reset-cancel">Annuler</button>
+      <button class="btn" id="reset-confirm">Envoyer l'e-mail</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/admin-auth.js"></script>
+<script src="assets/clients.js"></script>
+<script>
+(async function () {
+  const auth = await requireAdmin();
+  if (!auth) return;
+  renderAdminHeader();
+  await loadClients();
+})();
+</script>
+
+</body>
+</html>
