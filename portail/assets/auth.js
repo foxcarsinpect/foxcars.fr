@@ -57,6 +57,22 @@ async function getClientProfile() {
   return data || { id: user.id, full_name: user.email };
 }
 
+// ── Réinitialisation du mot de passe (envoie l'e-mail) ───────
+async function sendPasswordReset(email) {
+  const sb = getSupabase();
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: window.location.origin + '/portail/reset-password.html',
+  });
+  if (error) throw error;
+}
+
+// ── Mise à jour du mot de passe après réinitialisation ───────
+async function updatePassword(newPassword) {
+  const sb = getSupabase();
+  const { error } = await sb.auth.updateUser({ password: newPassword });
+  if (error) throw error;
+}
+
 // ── Affiche le nom dans le header ────────────────────────────
 async function renderUserHeader() {
   const profile = await getClientProfile();
